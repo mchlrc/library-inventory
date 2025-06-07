@@ -1,3 +1,64 @@
-* {
-  color: red;
+body {
+  display: flex;
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 0;
+  width: 100%;
+}
+
+.section {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  flex: 1 0 1;
+  padding: 10px;
+  min-height: 100vh;
+}
+
+.library {
+  background-color: green;
+  color: white;
+}
+
+.menu {
+  background-color: blue;
+  color: white;
+}
+
+.heading {
+  font-weight: 800;
+}
+
+::backdrop {
+  background-color: black;
+  opacity: 0.75;
+}
+
+.book {
+  color: blue;
+  background-color: white;
+  padding: 5px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-weight: 800;
+  font-size: large;
+}
+
+.delete {
+  background-color: green;
+  border: none;
+  border-radius: 5px;
+}
+
+dialog:open {
+  border-radius: 10px;
+  display: block;
 }

@@ -8,6 +8,60 @@
     <title>Library</title>
   </head>
   <body>
-    Hello World!
+    <div class="main">
+      <div class="section library">
+        <div class="heading">Library</div>
+      </div>
+      <div class="section menu">
+        <div class="heading">Menu</div>
+        <dialog>
+          <form method="post">
+            <label for="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              name="book-title"
+              value=""
+              autocomplete="off"
+              required
+            />
+            <label for="author">Author</label>
+            <input
+              type="text"
+              id="author"
+              name="book-author"
+              value=""
+              autocomplete="off"
+              required
+            />
+            <label for="pages">Pages</label>
+            <input
+              type="number"
+              id="pages"
+              name="book-pages"
+              value="0"
+              autocomplete="off"
+              required
+            />
+            <label for="read">Read</label>
+            <input
+              type="checkbox"
+              id="read"
+              name="book-read"
+              value=""
+              autocomplete="off"
+              required
+            />
+          </form>
+          <button class="saveButton" type="submit">Save</button>
+          <button class="cancelButton">Cancel</button>
+        </dialog>
+        <button class="addButton">Add Book</button>
+        <button class="listBooksButton">List Books</button>
+        <button class="updateDisplayButton">Update Display</button>
+        <button class="deleteAllBooksButton">Delete All Books</button>
+        <button class="addSampleBooksButton">Add Sample Books</button>
+      </div>
+    </div>
   </body>
 </html>
