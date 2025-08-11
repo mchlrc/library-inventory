@@ -1,2 +1,3 @@
-# odin-library
-The Odin Project JavaScript Library Project
+# library-inventory
+
+This is a simple web-based library inventory page.
