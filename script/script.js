@@ -2,6 +2,7 @@ const myLibrary = [];
 const body = document.querySelector("body");
 const librarySection = document.querySelector(".library");
 const menuSection = document.querySelector(".menu");
+const form = document.querySelector("form");
 
 function Book(title, author, pages, read) {
   if (!new.target) {
@@ -36,12 +37,7 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary(title, author, pages, read) {
   let book = new Book(title, author, pages, read);
-  let bookCount = myLibrary.push(book);
-  // console.log(
-  //   `You now have ${bookCount} book${
-  //     bookCount > 1 ? "s" : ""
-  //   } in your myLibrary. The new book's ID is ${book.id}.`
-  // );
+  myLibrary.push(book);
 }
 
 function removeBookFromLibraryById(theId) {
@@ -147,42 +143,42 @@ addButton.addEventListener("click", () => {
   dialog.showModal();
 });
 
-// "Save" button adds the boook to library and closes the dialog
+let formElements = [];
+const titleInput = document.getElementById("title");
+const authorInput = document.getElementById("author");
+const pageInput = document.getElementById("pages");
+const readInput = document.getElementById("read");
+
+// "Save" button adds the book to library and closes the dialog
 const saveButton = document.querySelector(".saveButton");
-saveButton.addEventListener("click", () => {
-  newTitle = document.getElementById("title");
-  newAuthor = document.getElementById("author");
-  newPages = document.getElementById("pages");
-  newRead = document.getElementById("read");
+saveButton.addEventListener("click", (event) => {
+  event.preventDefault();
 
-  addBookToLibrary(
-    newTitle.value,
-    newAuthor.value,
-    newPages.value,
-    newRead.checked
-  );
+  if (Object.keys(errors).length === 0) {
+    addBookToLibrary(
+      titleInput.value,
+      authorInput.value,
+      pageInput.value,
+      readInput.checked
+    );
 
-  dialog.close();
+    dialog.close();
 
-  newTitle.value = "";
-  newAuthor.value = "";
-  newPages.value = 0;
-  newRead.checked = false;
-  displayLibrarySection();
+    titleInput.value = "";
+    authorInput.value = "";
+    pageInput.value = 0;
+    readInput.checked = false;
+    displayLibrarySection();
+  }
 });
 
 // "Close" button closes the dialog
 const cancelButton = document.querySelector(".cancelButton");
 cancelButton.addEventListener("click", () => {
-  newTitle = document.getElementById("title");
-  newAuthor = document.getElementById("author");
-  newPages = document.getElementById("pages");
-  newRead = document.getElementById("read");
-
-  newTitle.value = "";
-  newAuthor.value = "";
-  newPages.value = 0;
-  newRead.checked = false;
+  titleInput.value = "";
+  authorInput.value = "";
+  pageInput.value = 0;
+  readInput.checked = false;
   dialog.close();
 });
 
@@ -199,7 +195,6 @@ listBooksButton.addEventListener("click", () => {
 const updateDisplayButton = document.querySelector(".updateDisplayButton");
 updateDisplayButton.addEventListener("click", () => {
   console.log("Clicked updateDisplayButton:");
-
   displayLibrarySection();
 });
 
@@ -222,4 +217,88 @@ addSampleBooksButton.addEventListener("click", () => {
     false
   );
   displayLibrarySection();
+});
+
+// Form Validation
+const errors = {};
+function addError(key, value) {
+  errors[key] = value;
+  console.log(errors);
+  const tempText = Object.values(errors).flat();
+  // const errorText = document.querySelector("span.error");
+  console.log(`addError(), errors = ${tempText}`);
+}
+
+function removeError(key) {
+  delete errors[key];
+  console.log(errors);
+  const tempText = Object.values(errors).flat();
+  console.log(`removeError(), errors = ${tempText}`);
+}
+function updateErrors() {
+  clearErrors();
+  const errorsSection = document.getElementById("errors");
+  Object.values(errors).forEach((error) => {
+    const errorSpan = document.createElement("span");
+    errorSpan.textContent = error;
+    errorSpan.className = "error";
+    errorsSection.appendChild(errorSpan);
+  });
+}
+
+function clearErrors() {
+  const tempErrors = document.querySelectorAll(".error");
+  tempErrors.forEach((error) => error.remove());
+}
+
+titleInput.addEventListener("input", (event) => {
+  const id = event.target.getAttribute("id");
+  const idName = id.charAt(0).toUpperCase() + id.slice(1);
+  if (event.target.validity.tooShort) {
+    addError(
+      id,
+      `${idName} must be longer than ${event.target.getAttribute(
+        "minlength"
+      )} characters`
+    );
+  } else if (event.target.validity.valueMissing) {
+    addError(id, `${idName} is required`);
+  } else {
+    removeError(id);
+  }
+  setTimeout(updateErrors, 1000);
+});
+
+authorInput.addEventListener("input", (event) => {
+  const id = event.target.getAttribute("id");
+  const idName = id.charAt(0).toUpperCase() + id.slice(1);
+  if (event.target.validity.tooShort) {
+    addError(
+      id,
+      `${idName} must be longer than ${event.target.getAttribute(
+        "minlength"
+      )} characters`
+    );
+  } else if (event.target.validity.valueMissing) {
+    addError(id, `${idName} is required`);
+  } else {
+    removeError(id);
+  }
+  setTimeout(updateErrors, 1000);
+});
+
+pageInput.addEventListener("input", (event) => {
+  const id = event.target.getAttribute("id");
+  const idName = id.charAt(0).toUpperCase() + id.slice(1);
+  if (event.target.validity.rangeUnderflow) {
+    addError(
+      id,
+      `${idName} must be greater than ${event.target.getAttribute("min")}`
+    );
+  } else if (event.target.validity.valueMissing) {
+    addError(id, `${idName} is required`);
+  } else {
+    removeError(id);
+  }
+  setTimeout(updateErrors, 1000);
 });

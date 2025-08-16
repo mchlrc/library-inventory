@@ -15,46 +15,54 @@
       <div class="section menu">
         <div class="heading">Menu</div>
         <dialog>
-          <form method="post">
-            <label for="title">Title</label>
-            <input
-              type="text"
-              id="title"
-              name="book-title"
-              value=""
-              autocomplete="off"
-              required
-            />
-            <label for="author">Author</label>
-            <input
-              type="text"
-              id="author"
-              name="book-author"
-              value=""
-              autocomplete="off"
-              required
-            />
-            <label for="pages">Pages</label>
-            <input
-              type="number"
-              id="pages"
-              name="book-pages"
-              value="0"
-              autocomplete="off"
-              required
-            />
-            <label for="read">Read</label>
-            <input
-              type="checkbox"
-              id="read"
-              name="book-read"
-              value=""
-              autocomplete="off"
-              required
-            />
+          <form method="post" novalidate>
+            <div class="form-row">
+              <label for="title">Title</label>
+              <input
+                type="text"
+                id="title"
+                name="book-title"
+                value=""
+                autocomplete="off"
+                required
+                minlength="3"
+              />
+              <label for="author">Author</label>
+              <input
+                type="text"
+                id="author"
+                name="book-author"
+                value=""
+                autocomplete="off"
+                required
+                minlength="3"
+              />
+              <label for="pages">Pages</label>
+              <input
+                type="number"
+                id="pages"
+                name="book-pages"
+                value="0"
+                autocomplete="off"
+                required
+                min="0"
+              />
+              <label for="read">Read</label>
+              <input
+                type="checkbox"
+                id="read"
+                name="book-read"
+                value=""
+                autocomplete="off"
+                required
+              />
+            </div>
           </form>
-          <button class="saveButton" type="submit">Save</button>
-          <button class="cancelButton">Cancel</button>
+          <div class="form-row">
+            <button class="saveButton" type="submit">Save</button>
+            <button class="cancelButton">Cancel</button>
+          </div>
+          <div class="form-col" id="errors"></div>
         </dialog>
         <button class="addButton">Add Book</button>
         <button class="listBooksButton">List Books</button>

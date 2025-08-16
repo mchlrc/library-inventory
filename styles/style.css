@@ -60,5 +60,32 @@ body {
 
 dialog:open {
   border-radius: 10px;
-  display: block;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  border-color: rgb(118, 118, 118);
+  border-width: 1px;
+}
+
+input:invalid {
+  border-color: red;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.form-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  gap: 5px;
 }
