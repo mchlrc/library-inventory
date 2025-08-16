@@ -21,12 +21,12 @@ body {
 }
 
 .library {
-  background-color: green;
-  color: white;
+  background-color: white;
+  color: black;
 }
 
 .menu {
-  background-color: blue;
+  background-color: gray;
   color: white;
 }
 
@@ -40,11 +40,15 @@ body {
 }
 
 .book {
-  color: blue;
-  background-color: white;
+  color: black;
+  background-color: ghostwhite;
   padding: 5px;
   border-radius: 10px;
   margin-bottom: 10px;
+  border-color: black black black lightblue;
+  border-style: solid;
+  border-width: 1px 1px 1px 4px;
+  box-shadow: 1px 1px 5px rgb(211, 211, 211);
 }
 
 .title {
@@ -52,11 +56,11 @@ body {
   font-size: large;
 }
 
-.delete {
+/* .delete {
   background-color: green;
   border: none;
   border-radius: 5px;
-}
+} */
 
 dialog:open {
   border-radius: 10px;
@@ -88,4 +92,29 @@ input:invalid {
   justify-content: space-evenly;
   align-items: flex-start;
   gap: 5px;
+}
+
+.addButton,
+.listBooksButton,
+.updateDisplayButton,
+.deleteAllBooksButton,
+.addSampleBooksButton,
+.saveButton,
+.cancelButton,
+.delete {
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin: 2px;
+}
+
+.addButton:hover,
+.listBooksButton:hover,
+.updateDisplayButton:hover,
+.deleteAllBooksButton:hover,
+.addSampleBooksButton:hover,
+.saveButton:hover,
+.cancelButton:hover,
+.delete:hover {
+  background-color: lightblue;
 }
